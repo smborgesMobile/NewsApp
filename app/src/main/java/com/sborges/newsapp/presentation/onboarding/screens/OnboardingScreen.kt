@@ -16,14 +16,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.sborges.newsapp.presentation.Dimens.MediumPaddingTwo
 import com.sborges.newsapp.presentation.Dimens.PageIndicatorWidth
-import com.sborges.newsapp.presentation.onboarding.common.PagingIndicator
+import com.sborges.newsapp.presentation.onboarding.common.NewsButton
+import com.sborges.newsapp.presentation.onboarding.common.NewsTextButton
+import com.sborges.newsapp.presentation.onboarding.common.PagerIndicator
 import com.sborges.newsapp.presentation.onboarding.components.OnboardingPage
 import com.sborges.newsapp.presentation.onboarding.pages
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -59,11 +63,32 @@ fun OnboardingScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            PagingIndicator(
+            PagerIndicator(
                 modifier = Modifier.width(PageIndicatorWidth),
-                pageSize = pages.size,
+                pagesSize = pages.size,
                 selectedPage = pageState.currentPage
             )
+
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                val scope = rememberCoroutineScope()
+                if (buttonState.value[0].isNotEmpty()) {
+                    NewsTextButton(text = buttonState.value[0]) {
+                        scope.launch {
+                            pageState.animateScrollToPage(page = pageState.currentPage - 1)
+                        }
+                    }
+                }
+
+                NewsButton(text = buttonState.value[1]) {
+                    scope.launch {
+                        if (pageState.currentPage == 3) {
+                            //TODO: Navigate to the main screen
+                        } else {
+                            pageState.animateScrollToPage(page = pageState.currentPage + 1)
+                        }
+                    }
+                }
+            }
         }
     }
 }
