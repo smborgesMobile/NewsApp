@@ -12,7 +12,7 @@ data class Page(
 val pages = listOf(
     Page(
         "Discover New Features",
-        "Explore the latest updates and features designed to enhance your experience.",
+        "Effortlessly manage your tasks and stay on top of your schedule with our intuitive tools.",
         R.drawable.onboarding1
     ),
     Page(
@@ -22,7 +22,7 @@ val pages = listOf(
     ),
     Page(
         "Connect with Community",
-        "Join a vibrant community of users and share your experiences and insights.",
+        "Effortlessly manage your tasks and stay on top of your schedule with our intuitive tools.",
         R.drawable.onboarding3
     )
 )

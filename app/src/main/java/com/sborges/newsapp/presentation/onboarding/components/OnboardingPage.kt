@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -40,13 +39,15 @@ fun OnboardingPage(
         )
         Spacer(modifier = Modifier.height(MediumPaddingOne))
         Text(
-            modifier = Modifier.padding(horizontal = MediumPaddingTwo),
+            modifier = Modifier
+                .padding(horizontal = MediumPaddingTwo),
             text = page.title,
             style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold),
             color = colorResource(id = R.color.display_small)
         )
         Text(
-            modifier = Modifier.padding(horizontal = MediumPaddingTwo),
+            modifier = Modifier
+                .padding(horizontal = MediumPaddingTwo),
             text = page.description,
             style = MaterialTheme.typography.bodyMedium,
             color = colorResource(id = R.color.text_medium)
