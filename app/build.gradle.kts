@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    id(libs.plugins.kotlin.kapt.get().pluginId)
 }
 
 android {
@@ -18,6 +20,11 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -66,6 +73,7 @@ dependencies {
     // Dagger Hilt
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    kapt(libs.hilt.compiler)
 
     // Retrofit
     implementation(libs.retrofit)
@@ -103,3 +111,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
+apply(plugin = "dagger.hilt.android.plugin")
+
+kapt {
+    correctErrorTypes = true
+}
+
