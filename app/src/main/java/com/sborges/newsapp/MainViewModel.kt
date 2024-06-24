@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.sborges.newsapp.domain.usecase.appEntry.AppEntryUseCase
 import com.sborges.newsapp.presentation.navGraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -31,6 +32,7 @@ class MainViewModel @Inject constructor(
                 } else {
                     Route.AppStartNavigation.router
                 }
+                delay(300)
                 splashCondition = false
             }.launchIn(viewModelScope)
         }
