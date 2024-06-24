@@ -12,6 +12,7 @@ import com.sborges.newsapp.domain.usecase.appEntry.ReadAppEntryUseCase
 import com.sborges.newsapp.domain.usecase.appEntry.SaveAppEntryUseCase
 import com.sborges.newsapp.domain.usecase.news.GetNews
 import com.sborges.newsapp.domain.usecase.news.NewsUseCases
+import com.sborges.newsapp.domain.usecase.news.SearchNewsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -62,6 +63,16 @@ object AppModule {
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun searchNewsUseCase(
+        newsRepository: NewsRepository
+    ): SearchNewsUseCase {
+        return SearchNewsUseCase(
+            repository = newsRepository
         )
     }
 
