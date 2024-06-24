@@ -44,8 +44,8 @@ fun Modifier.shimmerEffect() = composed {
 }
 
 @Composable
-fun ArticleShimmerEffect() {
-    Row(modifier = Modifier) {
+fun ArticleShimmerEffect(modifier: Modifier = Modifier) {
+    Row(modifier = modifier) {
         Box(
             modifier = Modifier
                 .size(articleSize)
