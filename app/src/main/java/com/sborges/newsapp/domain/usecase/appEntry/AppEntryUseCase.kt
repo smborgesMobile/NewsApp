@@ -1,4 +1,4 @@
-package com.sborges.newsapp.domain.usecase
+package com.sborges.newsapp.domain.usecase.appEntry
 
 data class AppEntryUseCase(
     val readAppEntryUseCase: ReadAppEntryUseCase,

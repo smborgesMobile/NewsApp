@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sborges.newsapp.domain.usecase.AppEntryUseCase
+import com.sborges.newsapp.domain.usecase.appEntry.AppEntryUseCase
 import com.sborges.newsapp.presentation.navGraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
