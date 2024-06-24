@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.sborges.newsapp.presentation.Dimens.MediumPaddingTwo
 import com.sborges.newsapp.presentation.Dimens.PageIndicatorWidth
+import com.sborges.newsapp.presentation.onboarding.OnboardEvent
 import com.sborges.newsapp.presentation.onboarding.common.NewsButton
 import com.sborges.newsapp.presentation.onboarding.common.NewsTextButton
 import com.sborges.newsapp.presentation.onboarding.common.PagerIndicator
@@ -32,7 +33,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnboardingScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    event: (OnboardEvent) -> Unit
 ) {
     Column(modifier = modifier.fillMaxSize()) {
         val pageState = rememberPagerState(initialPage = 0) {
@@ -81,8 +83,8 @@ fun OnboardingScreen(
 
                 NewsButton(text = buttonState.value[1]) {
                     scope.launch {
-                        if (pageState.currentPage == 3) {
-                            //TODO: Navigate to the main screen
+                        if (pageState.currentPage == 2) {
+                            event(OnboardEvent.SaveAppEntry)
                         } else {
                             pageState.animateScrollToPage(page = pageState.currentPage + 1)
                         }
@@ -97,6 +99,6 @@ fun OnboardingScreen(
 @Composable
 fun OnboardingScreenPreview() {
     MaterialTheme {
-        OnboardingScreen()
+        OnboardingScreen {}
     }
 }

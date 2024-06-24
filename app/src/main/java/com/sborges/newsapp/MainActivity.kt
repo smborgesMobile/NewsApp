@@ -13,8 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import com.sborges.newsapp.domain.usecase.AppEntryUseCase
+import com.sborges.newsapp.presentation.onboarding.OnboardingViewModel
 import com.sborges.newsapp.presentation.onboarding.screens.OnboardingScreen
 import com.sborges.newsapp.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,20 +31,22 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
+        enableEdgeToEdge()
 
         lifecycleScope.launch {
             appEntryUseCase.readAppEntryUseCase().collect {
-                Log.d("sm.borges", "Value $it")
+                Log.d("sm.borges ", "onCreate: $it")
             }
         }
 
-
-        installSplashScreen()
-        enableEdgeToEdge()
         setContent {
             NewsAppTheme {
                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
-                    OnboardingScreen()
+                    val viewModel: OnboardingViewModel = hiltViewModel()
+                    OnboardingScreen(
+                        event = viewModel::onEvent
+                    )
                 }
             }
         }
