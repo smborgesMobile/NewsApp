@@ -6,11 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.sborges.newsapp.presentation.home.HomeScreen
-import com.sborges.newsapp.presentation.home.HomeViewModel
 import com.sborges.newsapp.presentation.onboarding.OnboardingViewModel
 import com.sborges.newsapp.presentation.onboarding.screens.OnboardingScreen
+import com.sborges.newsapp.presentation.search.SearchScreen
+import com.sborges.newsapp.presentation.search.SearchViewModel
 
 /**
  * Defines the navigation graph for the News section of the application.
@@ -95,10 +94,9 @@ fun NavGraph(startDestination: String) {
             composable(
                 route = Route.NewsNavigationScreen.router
             ) {
-                val viewModel: HomeViewModel = hiltViewModel()
-                val articles = viewModel.news.collectAsLazyPagingItems()
-                HomeScreen( articles = articles) {
-                    
+                val viewModel: SearchViewModel = hiltViewModel()
+                SearchScreen(state = viewModel.state.value, event = viewModel::onEvent) {
+                    navController.navigate(Route.SearchScreen.router)
                 }
             }
         }
