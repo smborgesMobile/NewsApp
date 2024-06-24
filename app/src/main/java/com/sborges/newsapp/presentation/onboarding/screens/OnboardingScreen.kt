@@ -22,10 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.sborges.newsapp.presentation.Dimens.MediumPaddingTwo
 import com.sborges.newsapp.presentation.Dimens.PageIndicatorWidth
+import com.sborges.newsapp.presentation.common.NewsButton
+import com.sborges.newsapp.presentation.common.NewsTextButton
+import com.sborges.newsapp.presentation.common.PagerIndicator
 import com.sborges.newsapp.presentation.onboarding.OnboardEvent
-import com.sborges.newsapp.presentation.onboarding.common.NewsButton
-import com.sborges.newsapp.presentation.onboarding.common.NewsTextButton
-import com.sborges.newsapp.presentation.onboarding.common.PagerIndicator
 import com.sborges.newsapp.presentation.onboarding.components.OnboardingPage
 import com.sborges.newsapp.presentation.onboarding.pages
 import kotlinx.coroutines.launch

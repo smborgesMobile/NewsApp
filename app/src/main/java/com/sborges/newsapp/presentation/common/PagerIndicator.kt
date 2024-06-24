@@ -1,4 +1,4 @@
-package com.sborges.newsapp.presentation.onboarding.common
+package com.sborges.newsapp.presentation.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

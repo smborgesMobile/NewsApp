@@ -1,4 +1,4 @@
-package com.sborges.newsapp.presentation.onboarding.common
+package com.sborges.newsapp.presentation.common
 
 import android.content.res.Configuration
 import androidx.compose.foundation.shape.RoundedCornerShape
