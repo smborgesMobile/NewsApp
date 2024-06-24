@@ -8,4 +8,8 @@ object Dimens {
     val MediumPaddingTwo = 30.dp
     val IndicatorSize = 14.dp
     val PageIndicatorWidth = 52.dp
+    val articleSize = 96.dp
+    val extraSmall = 3.dp
+    val extraSmallTwo = 6.dp
+    val smallIconSize = 11.dp
 }
