@@ -88,5 +88,7 @@ fun ArticleShimmerEffect(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun ArticleCardShimmerPreview() {
-    ArticleShimmerEffect()
+    Column {
+        ArticleShimmerEffect()
+    }
 }

@@ -12,4 +12,6 @@ object Dimens {
     val extraSmall = 3.dp
     val extraSmallTwo = 6.dp
     val smallIconSize = 11.dp
+    val SmallSpacingTop = 12.dp
+    val MediumRoundedCorner = 4.dp
 }

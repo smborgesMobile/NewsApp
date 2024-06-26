@@ -95,6 +95,10 @@ dependencies {
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)
 
+    // Accomplish
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicators)
+
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
