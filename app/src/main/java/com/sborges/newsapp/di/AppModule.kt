@@ -1,8 +1,13 @@
 package com.sborges.newsapp.di
 
 import android.app.Application
+import androidx.room.Room
+import com.sborges.newsapp.data.local.NewsDao
+import com.sborges.newsapp.data.local.NewsDataBase
+import com.sborges.newsapp.data.local.NewsTypeConverter
 import com.sborges.newsapp.data.manager.LocalUserManagerImpl
 import com.sborges.newsapp.data.manager.ManagerConstants.BASE_URL
+import com.sborges.newsapp.data.manager.ManagerConstants.NEWS_DATA_BASE
 import com.sborges.newsapp.data.remote.NewsApi
 import com.sborges.newsapp.domain.manager.LocalUserManager
 import com.sborges.newsapp.domain.repository.NewsRepository
@@ -74,6 +79,27 @@ object AppModule {
         return SearchNewsUseCase(
             repository = newsRepository
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsDataBase(
+        application: Application
+    ): NewsDataBase =
+        Room.databaseBuilder(
+            context = application,
+            klass = NewsDataBase::class.java,
+            name = NEWS_DATA_BASE
+        ).addTypeConverter(NewsTypeConverter())
+            .fallbackToDestructiveMigration()
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDataBase: NewsDataBase
+    ): NewsDao {
+        return newsDataBase.newsDao
     }
 
 }

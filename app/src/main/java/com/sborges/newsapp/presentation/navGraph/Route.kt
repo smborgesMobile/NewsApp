@@ -6,7 +6,11 @@ sealed class Route(val router: String) {
     data object SearchScreen : Route("searchScreen")
     data object BookmarkScreen : Route("bookMarkScreen")
     data object DetailsScreen : Route("detailsScreen")
+
+
     data object AppStartNavigation : Route("appStartNavigation")
     data object NewsNavigation : Route("newsNavigation")
     data object NewsNavigationScreen : Route("newsNavigationScreen")
+    data object SearchNavigation : Route("searchNavigationScreen")
+    data object DetailNavigation : Route("detailNavigation")
 }
