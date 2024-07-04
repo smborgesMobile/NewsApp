@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt.android)
-    id("kotlin-parcelize")
+    id(libs.plugins.kotlin.parcelize.get().pluginId)
     id(libs.plugins.kotlin.kapt.get().pluginId)
 }
 
@@ -103,7 +103,7 @@ dependencies {
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    kapt (libs.room.compiler)
+    kapt(libs.room.compiler)
 
     // splash
     implementation(libs.core.splashscreen)
