@@ -15,9 +15,12 @@ import com.sborges.newsapp.domain.repository.impl.NewsRepositoryImpl
 import com.sborges.newsapp.domain.usecase.appEntry.AppEntryUseCase
 import com.sborges.newsapp.domain.usecase.appEntry.ReadAppEntryUseCase
 import com.sborges.newsapp.domain.usecase.appEntry.SaveAppEntryUseCase
+import com.sborges.newsapp.domain.usecase.news.DeleteArticle
 import com.sborges.newsapp.domain.usecase.news.GetNews
 import com.sborges.newsapp.domain.usecase.news.NewsUseCases
 import com.sborges.newsapp.domain.usecase.news.SearchNewsUseCase
+import com.sborges.newsapp.domain.usecase.news.SelectArticles
+import com.sborges.newsapp.domain.usecase.news.UpsertArticle
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -64,10 +67,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository
+        newsRepository: NewsRepository,
+        newsDao: NewsDao
     ): NewsUseCases {
         return NewsUseCases(
-            getNews = GetNews(newsRepository)
+            getNews = GetNews(newsRepository),
+            upsertArticle = UpsertArticle(newsDao),
+            deleteArticle = DeleteArticle(newsDao),
+            selectArticles = SelectArticles(newsDao),
+            searchNews = SearchNewsUseCase(newsRepository)
         )
     }
 
