@@ -12,15 +12,15 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.sborges.newsapp.R
+import com.sborges.newsapp.domain.model.Article
 import com.sborges.newsapp.presentation.Dimens.MediumPaddingOne
 import com.sborges.newsapp.presentation.common.ArticlesList
-import com.sborges.newsapp.presentation.navGraph.Route
 import com.sborges.newsapp.ui.theme.NewsAppTheme
 
 @Composable
 fun BookmarkScreen(
     modifier: Modifier = Modifier,
-    navigate: (String) -> Unit,
+    navigateToDetails: (Article) -> Unit,
     state: BookmarkState
 ) {
     Column(
@@ -40,7 +40,7 @@ fun BookmarkScreen(
         )
 
         ArticlesList(articles = state.articles) {
-            navigate(Route.DetailsScreen.router)
+            navigateToDetails(it)
         }
     }
 }
@@ -50,8 +50,10 @@ fun BookmarkScreen(
 @Preview(showBackground = true)
 private fun BookmarkScreenPreview() {
     NewsAppTheme {
-        BookmarkScreen(state = BookmarkState(listOf()), navigate = {
+        BookmarkScreen(
+            state = BookmarkState(listOf()),
+            navigateToDetails = {
 
-        })
+            })
     }
 }

@@ -62,7 +62,7 @@ fun DetailsScreen(
                     context.startActivity(intent)
                 }
             },
-            onBookmarkClick = { event(DetailsEvent.SaveArticleEvent) },
+            onBookmarkClick = { event(DetailsEvent.UpsertDeleteArticle(article)) },
             onBackClick = navigateUp
         )
 

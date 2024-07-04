@@ -28,14 +28,14 @@ import com.sborges.newsapp.domain.model.Article
 import com.sborges.newsapp.presentation.Dimens.MediumPaddingOne
 import com.sborges.newsapp.presentation.common.ArticlesList
 import com.sborges.newsapp.presentation.common.SearchBar
-import com.sborges.newsapp.presentation.navGraph.Route
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
     articles: LazyPagingItems<Article>,
-    navigate: (String) -> Unit
+    navigateToDetail: (Article) -> Unit,
+    navigateToSearch: () -> Unit
 ) {
 
     val title by remember {
@@ -72,7 +72,7 @@ fun HomeScreen(
             modifier = Modifier.padding(horizontal = MediumPaddingOne),
             text = "",
             readOnly = true,
-            onClick = { navigate(Route.SearchScreen.router) },
+            onClick = { navigateToSearch() },
             onValueChange = {}
         ) {
 
@@ -96,7 +96,7 @@ fun HomeScreen(
             modifier = Modifier.padding(horizontal = MediumPaddingOne),
             articles = articles
         ) {
-            navigate(Route.DetailsScreen.router)
+            navigateToDetail(it)
         }
     }
 
