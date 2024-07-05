@@ -19,7 +19,7 @@ class NewsRepositoryImpl(
     override fun getNews(sources: List<String>): Flow<PagingData<Article>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 10,
+                pageSize = 5,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
@@ -60,6 +60,7 @@ class NewsRepositoryImpl(
     }
 
     override suspend fun upsertArticle(article: Article) {
-        newsDao.upsert(article)
+        val articleWithNonNullAuthor = article.copy(author = article.author ?: "Unknown Author")
+        newsDao.upsert(articleWithNonNullAuthor)
     }
 }
